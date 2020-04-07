@@ -11,7 +11,6 @@ import (
 	"os"
 	"net"
 	c "github.com/fatih/color"
-	//spew "github.com/davecgh/go-spew/spew"
 )
 
 var letters = []rune("abcdefghijklmnopqrstuvwxyz1234567890")
@@ -84,8 +83,8 @@ func getURLHeaders (url string) map[string]interface {} {
 	return headers
 }
 
-/**
- *Returns the header value from a given header key, if available, else returns empty string.
+/*
+Returns the header value from a given header key, if available, else returns empty string.
 @param string - URL given
 @param string - Header key
 @return string
@@ -204,24 +203,13 @@ func dnsQuery (url string) {
 }
 
 func main () {
+    p := c.New(c.FgYellow, c.Bold)
 
 	rand.Seed(time.Now().UnixNano())
 
-	///scope := flag.String("headers", "all", "Display the entire headers.")
 	urlRaw := flag.String("url", "", "The URL to diagnose.")
 	cache := flag.Bool("cache", false, "Enable or disable.")
 	help := flag.Bool("h", false, "Display help information.")
-	//age := flag.Bool("age", false, "age header.")
-
-	// Specific flags
-	/*
-	age := flag.Bool("age", false, "age header.")
-	cacheControl := flag.Bool("cache-control", false, "cache-control header.")
-	xServedBy := flag.Bool("x-served-by", false, "x-served-by header.")
-	hsts := flag.Bool("strict-transport-security", false, "strict-transport-security header.")
-	eTag := flag.Bool("etag", false, "etag header.")
-	setCookie := flag.Bool("set-cookie", false, "set-cookie header")
-	*/
 
 	flag.Parse()
 
@@ -233,6 +221,8 @@ func main () {
 		}
 	}
  
+	p.Printf("Querying HTTP headers...\n")
+
 	if !*cache {
 		queryParam := randSeq(10)
 		url := fmt.Sprintf("http://%s?query-param=%s", *urlRaw, queryParam)
@@ -244,13 +234,4 @@ func main () {
 
 	// Check DNS records.
 	dnsQuery(*urlRaw)
-	
-    /*
-	spew.Dump(scope)
-	spew.Dump(cache)
-	fmt.Println("scope:", *scope)
-    fmt.Println("cache:", *cache)
-	fmt.Println("arguments:", flag.Args())
-	fmt.Println(rand.Int())
-	*/
 }
