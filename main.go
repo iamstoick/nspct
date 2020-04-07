@@ -30,6 +30,7 @@ func randSeq(n int) string {
 Display help.
 */
 func printHelp() {
+	yellow := c.New(c.FgYellow).SprintFunc()
 	fmt.Println("Usage:")
 	fmt.Println("\tnspectr -url=DOMAIN")
 	fmt.Println()
@@ -38,23 +39,24 @@ func printHelp() {
 	fmt.Println("\tnspectr -url=DOMAIN age cache-control")
 	fmt.Println()
 	fmt.Println("Additional Parameters:")
-    fmt.Println("\tage")
-    fmt.Println("\t\tReturn age only.")
-    fmt.Println("\tcache-control")
+    fmt.Printf("\t%s\n", yellow("age"))
+	fmt.Println("\t\tReturn age only.")
+	fmt.Printf("\t%s\n", yellow("cache-control"))
     fmt.Println("\t\tReturn cache-control only.")
-    fmt.Println("\tx-cache")
+	fmt.Printf("\t%s\n", yellow("x-cache"))
     fmt.Println("\t\tReturn x-cache only.")
-    fmt.Println("\tset-cookie")
+	fmt.Printf("\t%s\n", yellow("set-cookie"))
     fmt.Println("\t\tReturn set-cookie only.")
-    fmt.Println("\tstrict-transport-security")
+	fmt.Printf("\t%s\n", yellow("strict-transport-security"))
     fmt.Println("\t\tReturn strict-transport-security only.")
-    fmt.Println("\tetag")
+	fmt.Printf("\t%s\n", yellow("etag"))
     fmt.Println("\t\tReturn etag only.")
-    fmt.Println("\tx-served-by")
+	fmt.Printf("\t%s\n", yellow("x-served-by"))
 	fmt.Println("\t\tReturn x-served-by only.")
 	fmt.Println()
 	fmt.Println("Flags:")
 	flag.PrintDefaults()
+	fmt.Println()
 }
 
 /*
@@ -116,8 +118,6 @@ func getURLHeader (url string) string {
 			if ok {
 				fmt.Printf("%s: %s\n", yellow(index), white(el))
 			}
-			//fmt.Print(c.Green(index))
-			//fmt.Println(index, ": ", element)
 		}
 	} else {
 	    for _, key := range flag.Args() {
@@ -153,13 +153,11 @@ func main () {
 	flag.Parse()
 
 	// Display help information.
-	fmt.Println(flag.NArg())
-	//os.Exit(0)
-	if flag.NArg() == 0 {
+	if len(*urlRaw) < 1 {
 		if (*help || flag.Args()[0] == "help") {
 			printHelp()
+			os.Exit(0)
 		}
-		os.Exit(0)
 	}
  
 	if !*cache {
