@@ -37,6 +37,22 @@ func printHelp() {
 	fmt.Println("\tnspectr -cache=false -url=DOMAIN")
 	fmt.Println("\tnspectr -url=DOMAIN age cache-control")
 	fmt.Println()
+	fmt.Println("Additional Parameters:")
+    fmt.Println("\tage")
+    fmt.Println("\t\tReturn age only.")
+    fmt.Println("\tcache-control")
+    fmt.Println("\t\tReturn cache-control only.")
+    fmt.Println("\tx-cache")
+    fmt.Println("\t\tReturn x-cache only.")
+    fmt.Println("\tset-cookie")
+    fmt.Println("\t\tReturn set-cookie only.")
+    fmt.Println("\tstrict-transport-security")
+    fmt.Println("\t\tReturn strict-transport-security only.")
+    fmt.Println("\tetag")
+    fmt.Println("\t\tReturn etag only.")
+    fmt.Println("\tx-served-by")
+	fmt.Println("\t\tReturn x-served-by only.")
+	fmt.Println()
 	fmt.Println("Flags:")
 	flag.PrintDefaults()
 }
@@ -137,11 +153,13 @@ func main () {
 	flag.Parse()
 
 	// Display help information.
-	if flag.NArg() > 0 {
+	fmt.Println(flag.NArg())
+	//os.Exit(0)
+	if flag.NArg() == 0 {
 		if (*help || flag.Args()[0] == "help") {
 			printHelp()
-			os.Exit(0)
 		}
+		os.Exit(0)
 	}
  
 	if !*cache {
