@@ -1,5 +1,5 @@
 # nspectr
-Query HTTP header and other DNS information.
+Query HTTP headers and other DNS information.
 
 # Installing
 
@@ -11,7 +11,7 @@ Go 1.6.3+ is required. Make sure you have [Go](https://golang.org/doc/install) p
 
 ```
 cd $GOPATH
-go get github.com/geraldvillorente/nspectr
+go get github.com/geraldvillorente/nspct
 ```
 
 You should now have dt binary in the bin directory:
@@ -19,11 +19,11 @@ You should now have dt binary in the bin directory:
 # Usage
 ```
 Usage:
-	nspectr -url=DOMAIN
+	nspct -url=DOMAIN
 
 Example:
-	nspectr -cache=false -url=DOMAIN
-	nspectr -url=DOMAIN age cache-control
+	nspct -url=DOMAIN -cache
+	nspct -url=DOMAIN age cache-control
 
 Additional Parameters:
     age
@@ -43,7 +43,7 @@ Additional Parameters:
 
 Flags:
   -cache
-        To enable cache.
+        To disanable cache bypass.
   -url
         Domain name to diagnose.
 ```
