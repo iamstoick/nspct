@@ -16,11 +16,11 @@ go get github.com/geraldvillorente/nspct
 
 ## Make the command globally available
 You should now have `nspct` binary in the bin directory: `$GOPATH/bin`. 
-To make `$GOPATH/bin` globally available so you can execute the command `nspct`anywhere in the terminal/console:
-* Open your ~/.bash_profile file.
+To make `$GOPATH/bin` globally available so you can execute the command `nspct` anywhere in the terminal/console:
+* Open your `~/.bash_profile` or `~/.bashrc` file.
 * Add the `$GOPATH/bin` path at the bottom like this `export PATH=$PATH:$GOPATH/bin`. 
 * Save and close.
-* Reload `~/.bash_profile` by running `. ~/.bash_profile` or `source ~/.bash_profile`in the terminal/console.
+* Reload `~/.bash_profile` by running `. ~/.bash_profile` or `source ~/.bash_profile`in the terminal/console. Same method for `~/.bashrc` file.
 
 # Usage
 ```
