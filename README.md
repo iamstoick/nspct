@@ -1,4 +1,4 @@
-# nspectr
+# nspct
 Query HTTP headers and other DNS information.
 
 # Installing
@@ -14,7 +14,13 @@ cd $GOPATH
 go get github.com/geraldvillorente/nspct
 ```
 
-You should now have dt binary in the bin directory:
+## Make the command globally available
+You should now have `nspct` binary in the bin directory: `$GOPATH/bin`. 
+To make `$GOPATH/bin` globally available so you can execute the command `nspct`anywhere in the terminal/console:
+* Open your ~/.bash_profile file.
+* Add the `$GOPATH/bin` path at the bottom like this `export PATH=$PATH:$GOPATH/bin`. 
+* Save and close.
+* Reload `~/.bash_profile` by running `. ~/.bash_profile` or `source ~/.bash_profile`in the terminal/console.
 
 # Usage
 ```

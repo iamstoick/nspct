@@ -32,11 +32,11 @@ Display help.
 func printHelp() {
 	yellow := c.New(c.FgYellow).SprintFunc()
 	fmt.Println("Usage:")
-	fmt.Println("\tnspectr -url=DOMAIN")
+	fmt.Println("\tnspct -url=DOMAIN")
 	fmt.Println()
 	fmt.Println("Example:")
-	fmt.Println("\tnspectr -cache=false -url=DOMAIN")
-	fmt.Println("\tnspectr -url=DOMAIN age cache-control")
+	fmt.Println("\tnspct -url=DOMAIN -cache")
+	fmt.Println("\tnspct -url=DOMAIN age cache-control")
 	fmt.Println()
 	fmt.Println("Additional Parameters:")
 	fmt.Printf("\t%s\n", yellow("age"))
@@ -86,7 +86,6 @@ func getURLHeaders (url string) map[string]interface {} {
 /*
 Returns the header value from a given header key, if available, else returns empty string.
 @param string - URL given
-@param string - Header key
 @return string
 */
 func getURLHeader (url string) string {
