@@ -20,7 +20,7 @@ To make `$GOPATH/bin` globally available so you can execute the command `nspct` 
 * Open your `~/.bash_profile` or `~/.bashrc` file.
 * Add the `$GOPATH/bin` path at the bottom like this `export PATH=$PATH:$GOPATH/bin`. 
 * Save and close.
-* Reload `~/.bash_profile` by running `. ~/.bash_profile` or `source ~/.bash_profile`in the terminal/console. Same method for `~/.bashrc` file.
+* Reload `~/.bash_profile` by running `. ~/.bash_profile` or `source ~/.bash_profile` in the terminal/console. Same method for `~/.bashrc` file.
 
 # Usage
 ```
