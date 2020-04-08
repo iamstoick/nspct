@@ -24,6 +24,9 @@ To make `$GOPATH/bin` globally available so you can execute the command `nspct` 
 
 # Usage
 ```console
+$ nspct -h
+Query HTTP headers and other DNS information.
+
 Usage:
 	nspct -url=DOMAIN
 
