@@ -23,7 +23,10 @@ To make `$GOPATH/bin` globally available so you can execute the command `nspct` 
 * Reload `~/.bash_profile` by running `. ~/.bash_profile` or `source ~/.bash_profile` in the terminal/console. Same method for `~/.bashrc` file.
 
 # Usage
-```
+```console
+$ nspct -h
+Query HTTP headers and other DNS information.
+
 Usage:
 	nspct -url=DOMAIN
 
