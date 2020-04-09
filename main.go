@@ -1,15 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"flag"
+	"fmt"
 	"log"
-	"net/http"
-	"strings"
 	"math/rand"
-	"time"
-	"os"
 	"net"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
 	c "github.com/fatih/color"
 )
 
@@ -19,11 +20,11 @@ var letters = []rune("abcdefghijklmnopqrstuvwxyz1234567890")
 Generate random characters.
 */
 func randSeq(n int) string {
-    b := make([]rune, n)
-    for i := range b {
-        b[i] = letters[rand.Intn(len(letters))]
-    }
-    return string(b)
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letters[rand.Intn(len(letters))]
+	}
+	return string(b)
 }
 
 /*
@@ -64,7 +65,7 @@ Returns a map array of all available headers.
 @param string - URL given
 @return map[string]interface{}
 */
-func getURLHeaders (url string) map[string]interface {} {
+func getURLHeaders(url string) map[string]interface{} {
 	response, err := http.Head(url)
 	if err != nil {
 		log.Fatal("Error: Unable to download URL (", url, ") with error: ", err)
@@ -75,11 +76,11 @@ func getURLHeaders (url string) map[string]interface {} {
 	}
 
 	headers := make(map[string]interface{})
-	
+
 	for k, v := range response.Header {
 		headers[strings.ToLower(k)] = string(v[0])
 	}
-	
+
 	return headers
 }
 
@@ -88,7 +89,7 @@ Returns the header value from a given header key, if available, else returns emp
 @param string - URL given
 @return string
 */
-func getURLHeader (url string) string {
+func getURLHeader(url string) string {
 	headers := getURLHeaders(url)
 
 	// Ways to access flag.Args()
@@ -105,37 +106,37 @@ func getURLHeader (url string) string {
 	//for key, val := range flag.Args() {
 	//	fmt.Println(key)
 	//	fmt.Println(val)
-    //}
+	//}
 
 	yellow := c.New(c.FgYellow).SprintFunc()
 	white := c.New(c.FgWhite).SprintFunc()
 
 	if flag.NArg() == 0 {
-		for index, element := range headers{
-			
+		for index, element := range headers {
+
 			el, ok := element.(string)
 			if ok {
 				fmt.Printf("%s: %s\n", yellow(index), white(el))
 			}
 		}
 	} else {
-	    for _, key := range flag.Args() {
+		for _, key := range flag.Args() {
 			if value, ok := headers[key]; ok {
 				fmt.Printf("%s: %s\n", yellow(key), white(value))
 			}
-    	}
+		}
 	}
-	
+
 	return ""
 }
 
 /*
 Get DNS information.
 */
-func dnsQuery (url string) {
-    p := c.New(c.FgYellow, c.Bold)
+func dnsQuery(url string) {
+	p := c.New(c.FgYellow, c.Bold)
 	fmt.Println()
-	
+
 	// Query IP address.
 	p.Printf("Querying IP records...\n")
 	iprecords, ipeErr := net.LookupIP(url)
@@ -145,7 +146,7 @@ func dnsQuery (url string) {
 	for _, ip := range iprecords {
 		fmt.Println(ip)
 	}
-   
+
 	fmt.Println()
 
 	// Query CNAME records.
@@ -201,8 +202,8 @@ func dnsQuery (url string) {
 	fmt.Println()
 }
 
-func main () {
-    p := c.New(c.FgYellow, c.Bold)
+func main() {
+	p := c.New(c.FgYellow, c.Bold)
 
 	rand.Seed(time.Now().UnixNano())
 
@@ -214,20 +215,24 @@ func main () {
 
 	// Display help information.
 	if len(*urlRaw) < 1 {
-		if (*help || flag.Args()[0] == "help") {
+		if *help || flag.Args()[0] == "help" {
 			printHelp()
 			os.Exit(0)
 		}
 	}
- 
-	p.Printf("Querying HTTP headers...\n")
 
 	if !*cache {
 		queryParam := randSeq(10)
 		url := fmt.Sprintf("http://%s?query-param=%s", *urlRaw, queryParam)
+
+		p.Printf("Querying HTTP headers for %s...\n", url)
+
 		getURLHeader(url)
 	} else {
 		url := fmt.Sprintf("http://%s", *urlRaw)
+
+		p.Printf("Querying HTTP headers for %s...\n", url)
+
 		getURLHeader(url)
 	}
 
