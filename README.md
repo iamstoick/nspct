@@ -11,7 +11,7 @@ Go 1.6.3+ is required. Make sure you have [Go](https://golang.org/doc/install) p
 
 ```
 cd $GOPATH
-go get github.com/geraldvillorente/nspct
+go get github.com/iamstoick/nspct
 ```
 
 ## Make the command globally available
